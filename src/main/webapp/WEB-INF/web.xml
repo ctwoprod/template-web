@@ -11,6 +11,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>			
             /WEB-INF/spring/app-config.xml
+            /WEB-INF/spring/spring-security.xml
         </param-value>
 	</context-param>
 	<listener>
@@ -48,6 +49,14 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>FormServlet</servlet-name>
+		<servlet-class>org.rf.template.servlet.FormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FormServlet</servlet-name>
+		<url-pattern>/FormServlet</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>DownloadTemplate</servlet-name>
@@ -65,6 +74,19 @@
 		<filter-name>OpenEntityManagerInViewFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- springSecurityFilterChain -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error404.jsp</location>
